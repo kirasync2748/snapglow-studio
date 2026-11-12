@@ -1,0 +1,7 @@
+node_modules
+dist
+artifacts
+.vscode-test
+playwright-report
+test-results
+package-lock.json

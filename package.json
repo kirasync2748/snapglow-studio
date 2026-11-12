@@ -1,0 +1,136 @@
+{
+  "name": "snapglow-studio",
+  "displayName": "Snapglow: Code Snap Studio",
+  "description": "A local-first code screenshot studio. Style, highlight, and export beautiful snippets without leaving VS Code.",
+  "version": "0.1.0",
+  "publisher": "kirasync2748",
+  "license": "MIT",
+  "private": true,
+  "author": "kirasync2748",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kirasync2748/snapglow-studio.git"
+  },
+  "homepage": "https://github.com/kirasync2748/snapglow-studio#readme",
+  "bugs": {
+    "url": "https://github.com/kirasync2748/snapglow-studio/issues"
+  },
+  "engines": {
+    "vscode": "^1.146.0",
+    "node": ">=26.13.1 <27"
+  },
+  "categories": [
+    "Other",
+    "Visualization"
+  ],
+  "keywords": [
+    "code",
+    "screenshot",
+    "snippet",
+    "image",
+    "png",
+    "svg",
+    "carbon"
+  ],
+  "galleryBanner": {
+    "color": "#10131e",
+    "theme": "dark"
+  },
+  "main": "./dist/extension.cjs",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "snapglow.capture",
+        "title": "Capture Selection",
+        "category": "Snapglow",
+        "icon": "$(device-camera)"
+      },
+      {
+        "command": "snapglow.open",
+        "title": "Open Studio",
+        "category": "Snapglow"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "snapglow.capture",
+          "group": "navigation@100",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "snapglow.capture",
+        "key": "ctrl+alt+s",
+        "mac": "cmd+alt+s",
+        "when": "editorTextFocus && editorHasSelection"
+      }
+    ],
+    "configuration": {
+      "title": "Snapglow",
+      "properties": {
+        "snapglow.keepOriginalLineNumbers": {
+          "type": "boolean",
+          "default": false,
+          "description": "Start captured snippets at their source line number."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "vscode:prepublish": "npm run build",
+    "check": "tsc --noEmit && biome lint --error-on-warnings . && prettier --check .",
+    "format": "prettier --write .",
+    "test": "node --test test/*.test.*",
+    "test:extension": "node scripts/test-extension.mjs",
+    "test:e2e": "playwright test",
+    "preview": "node scripts/preview.mjs",
+    "package": "node scripts/package.mjs",
+    "verify:release": "node scripts/verify-release.mjs"
+  },
+  "dependencies": {
+    "@fontsource/jetbrains-mono": "5.3.0",
+    "html-to-image": "1.11.13",
+    "shiki": "4.6.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.7",
+    "@playwright/test": "1.65.0",
+    "@types/node": "26.6.6",
+    "@types/vscode": "1.146.0",
+    "@vscode/test-electron": "3.1.0",
+    "@vscode/vsce": "4.1.0",
+    "esbuild": "0.28.2",
+    "prettier": "3.10.0",
+    "typescript": "7.0.2"
+  },
+  "overrides": {
+    "@vscode/vsce": {
+      "minimatch": "11.0.8"
+    }
+  },
+  "files": [
+    "dist/extension.cjs",
+    "dist/studio.js",
+    "dist/studio.css",
+    "dist/mono.woff2",
+    "dist/FONT-LICENSE.txt",
+    "assets/*.png",
+    "artifacts/package-readme.md",
+    "CHANGELOG.md",
+    "LICENSE",
+    "PRIVACY.md",
+    "dist/icon.png"
+  ],
+  "type": "module",
+  "icon": "assets/icon.png"
+}

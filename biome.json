@@ -1,0 +1,17 @@
+{
+  "files": {
+    "includes": ["src/**", "scripts/**", "test/**", "playwright.config.ts"]
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "preset": "recommended"
+    }
+  },
+  "formatter": {
+    "enabled": false
+  },
+  "assist": {
+    "enabled": false
+  }
+}

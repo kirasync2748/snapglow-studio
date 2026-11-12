@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.vsix
+.vscode-test/
+coverage/
+playwright-report/
+test-results/
+artifacts/
+.DS_Store
